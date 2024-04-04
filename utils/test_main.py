@@ -11,6 +11,9 @@ def test_init(category_clothes):
     assert category_clothes.name == 'одежда'
     assert category_clothes.description == 'для спорта'
     assert category_clothes.goods == ["топ", "леггинсы"]
+    assert Category.total_categories == 1
+
+
 
 
 

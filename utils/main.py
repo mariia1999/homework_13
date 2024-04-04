@@ -21,12 +21,19 @@ class Product:
     product_description: str
     price: float
     amount: int
+    total_products = 0
 
     def __init__(self, product_name, product_description, price, amount):
         self.product_name = product_name
         self.product_description = product_description
         self.price = price
         self.amount = amount
+        Product.total_products += 1
+
+
+
+
+
 
 
 
