@@ -8,12 +8,24 @@ class Category:
     def __init__(self, name, description, goods):
         self.name = name
         self.description = description
-        self.goods = goods
+        self.__goods = self.goods
         Category.total_categories += 1
+
+    def add_unique_goods(self, goods):
+        self.goods.append(goods)
+        Category.unique_goods.add(goods)
 
     def add_goods(self, goods):
         self.goods.append(goods)
-        Category.unique_goods.add(goods)
+        Category.goods.add(goods)
+
+    @property
+    def goods(self):
+        return f"{self.goods},  "
+
+
+
+
 
 
 class Product:
