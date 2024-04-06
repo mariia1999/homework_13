@@ -5,27 +5,23 @@ class Category:
     total_categories = 0
     unique_goods = set()
 
-    def __init__(self, name, description, goods):
+    def __init__(self, name, description):
         self.name = name
         self.description = description
-        self.__goods = self.goods
+        self.__goods = []
         Category.total_categories += 1
 
     def add_unique_goods(self, goods):
-        self.goods.append(goods)
+        self.__goods.append(goods)
         Category.unique_goods.add(goods)
 
     def add_goods(self, goods):
-        self.goods.append(goods)
-        Category.goods.add(goods)
+        if isinstance(goods, Product):
+            self.__goods.append(goods)
 
-    @property
-    def goods(self):
-        return f"{self.goods},  "
-
-
-
-
+    def get_goods(self):
+        for goods in self.__goods:
+            print(f"{goods.product_name}, {goods.price} руб. Остаток: {goods.amount} ")
 
 
 class Product:
@@ -38,9 +34,24 @@ class Product:
     def __init__(self, product_name, product_description, price, amount):
         self.product_name = product_name
         self.product_description = product_description
-        self.price = price
+        self._price = price
         self.amount = amount
         Product.total_products += 1
+
+    @staticmethod
+    def add_product(name, description, price, amount):
+        return Product(name, description, price, amount)
+
+    @property
+    def price(self):
+        return self._price
+
+    @price.setter
+    def price(self, cost):
+        if cost <= 0:
+            print("Стоимость неверная")
+        else:
+            self._price = cost
 
 
 
