@@ -14,3 +14,4 @@ def test_init(product_top):
         assert product_top.amount == 10
         assert Product.total_products == 1
 
+

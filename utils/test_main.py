@@ -18,3 +18,6 @@ def test_init(category_clothes):
 
 
 
+
+
+

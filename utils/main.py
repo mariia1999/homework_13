@@ -53,6 +53,12 @@ class Product:
         else:
             self._price = cost
 
+    @price.deleter
+    def price(self):
+        print("Цена удалена")
+        self._price = None
+
+
 
 
 
