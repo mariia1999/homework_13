@@ -19,9 +19,15 @@ class Category:
         if isinstance(goods, Product):
             self.__goods.append(goods)
 
-    def get_goods(self):
-        for goods in self.__goods:
-            print(f"{goods.product_name}, {goods.price} руб. Остаток: {goods.amount} ")
+    def __str__(self):
+        return f"Название категории: {self.name}, количество продуктов: {len(self)}"
+
+    def __len__(self):
+        return len(self.__goods)
+
+    #def get_goods(self):
+        #for goods in self.__goods:
+            #print(f"{goods.product_name}, {goods.price} руб. Остаток: {goods.amount} ")
 
 
 class Product:
@@ -58,9 +64,11 @@ class Product:
         print("Цена удалена")
         self._price = None
 
+    def __str__(self):
+        return f"{self.product_name}, {self._price} руб. Остаток: {self.amount}"
 
-
-
+    def __add__(self, other):
+        return (self.price * self.amount) + (other.price * other.amount)
 
 
 
