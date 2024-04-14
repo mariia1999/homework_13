@@ -23,7 +23,10 @@ class Category:
         return f"Название категории: {self.name}, количество продуктов: {len(self)}"
 
     def __len__(self):
-        return len(self.__goods)
+        total = 0
+        for goods in self.__goods:
+            total += goods.amount
+        return total
 
     #def get_goods(self):
         #for goods in self.__goods:
