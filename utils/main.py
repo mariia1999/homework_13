@@ -18,6 +18,8 @@ class Category:
     def add_goods(self, goods):
         if isinstance(goods, Product):
             self.__goods.append(goods)
+        else:
+            raise TypeError
 
     def __str__(self):
         return f"Название категории: {self.name}, количество продуктов: {len(self)}"
@@ -38,18 +40,20 @@ class Product:
     product_description: str
     price: float
     amount: int
+    color: str
     total_products = 0
 
-    def __init__(self, product_name, product_description, price, amount):
+    def __init__(self, product_name, product_description, price, amount, color):
         self.product_name = product_name
         self.product_description = product_description
         self._price = price
         self.amount = amount
+        self.color = color
         Product.total_products += 1
 
     @staticmethod
-    def add_product(name, description, price, amount):
-        return Product(name, description, price, amount)
+    def add_product(name, description, price, amount, color):
+        return Product(name, description, price, amount, color)
 
     @property
     def price(self):
@@ -71,7 +75,29 @@ class Product:
         return f"{self.product_name}, {self._price} руб. Остаток: {self.amount}"
 
     def __add__(self, other):
-        return (self.price * self.amount) + (other.price * other.amount)
+        if type(self) == type(other):
+            return (self.price * self.amount) + (other.price * other.amount)
+        else:
+            raise TypeError
+
+
+class Smartphone(Product):
+    def __init__(self, product_name, product_description, price, amount, color, efficiency, model, memory):
+        super().__init__(product_name, product_description, price, amount, color)
+        self.efficiency = efficiency
+        self.model = model
+        self.memory = memory
+
+
+class LawnGrass(Product):
+    def __init__(self, product_name, product_description, price, amount, color, origin, ger_period):
+        super().__init__(product_name, product_description, price, amount, color)
+        self.origin = origin
+        self.ger_period = ger_period
+
+
+
+
 
 
 
