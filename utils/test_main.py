@@ -53,6 +53,7 @@ def test_init_grass(grass):
     assert Product.total_products == 1
 
 
+@pytest.fixture
 def test__add__(p1, p2):
     assert p1 == Product('watermelon', 'summer', '100', 50, 'red')
     assert p2 == Product('apple', 'russian', 40, 200, 'green')

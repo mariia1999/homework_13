@@ -1,3 +1,6 @@
+from abc import ABC, abstractmethod
+
+
 class Category:
     name: str
     description: str
@@ -35,7 +38,16 @@ class Category:
             #print(f"{goods.product_name}, {goods.price} руб. Остаток: {goods.amount} ")
 
 
-class Product:
+class AbstractClass(ABC):
+    @abstractmethod
+    def __init__(self):
+        pass
+
+    def price(self):
+        pass
+
+
+class Product(AbstractClass):
     product_name: str
     product_description: str
     price: float
@@ -81,6 +93,14 @@ class Product:
             raise TypeError
 
 
+class MixinLog:
+    def __init__(self):
+        super().__init__()
+
+    def __repr__(self):
+        return f'Product ({Product.product_name}, {Product.product_description}, {Product.price}, {Product.amount})'
+
+
 class Smartphone(Product):
     def __init__(self, product_name, product_description, price, amount, color, efficiency, model, memory):
         super().__init__(product_name, product_description, price, amount, color)
@@ -94,6 +114,10 @@ class LawnGrass(Product):
         super().__init__(product_name, product_description, price, amount, color)
         self.origin = origin
         self.ger_period = ger_period
+
+
+
+
 
 
 
