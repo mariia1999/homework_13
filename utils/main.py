@@ -43,6 +43,7 @@ class AbstractClass(ABC):
     def __init__(self):
         pass
 
+    @abstractmethod
     def price(self):
         pass
 
@@ -101,7 +102,7 @@ class MixinLog:
         return f'Product ({Product.product_name}, {Product.product_description}, {Product.price}, {Product.amount})'
 
 
-class Smartphone(Product):
+class Smartphone(Product, MixinLog):
     def __init__(self, product_name, product_description, price, amount, color, efficiency, model, memory):
         super().__init__(product_name, product_description, price, amount, color)
         self.efficiency = efficiency
@@ -109,14 +110,11 @@ class Smartphone(Product):
         self.memory = memory
 
 
-class LawnGrass(Product):
+class LawnGrass(Product, MixinLog):
     def __init__(self, product_name, product_description, price, amount, color, origin, ger_period):
         super().__init__(product_name, product_description, price, amount, color)
         self.origin = origin
         self.ger_period = ger_period
-
-
-
 
 
 
