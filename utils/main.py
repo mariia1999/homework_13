@@ -33,6 +33,15 @@ class Category:
             total += goods.amount
         return total
 
+    def average_sum(self):
+        avg = sum(Product.price for goods in self.__goods) / len(self.__goods)
+        return avg
+    try:
+        len(self.__goods) == 0
+    except ZeroDivisionError:
+        print('В категории нет товаров')
+
+
     #def get_goods(self):
         #for goods in self.__goods:
             #print(f"{goods.product_name}, {goods.price} руб. Остаток: {goods.amount} ")
@@ -63,6 +72,8 @@ class Product(AbstractClass):
         self.amount = amount
         self.color = color
         Product.total_products += 1
+        if not amount or amount == 0:
+            raise AddGoodsException
 
     @staticmethod
     def add_product(name, description, price, amount, color):
@@ -117,6 +128,12 @@ class LawnGrass(Product, MixinLog):
         self.ger_period = ger_period
 
 
+class AddGoodsException(Exception):
+    def __init__(self, *args, **kwargs):
+        self.message = args[0] if args else 'Невозможно добавить 0 товаров'
+
+    def __str__(self):
+        return self.message
 
 
 
