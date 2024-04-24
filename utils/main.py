@@ -34,6 +34,7 @@ class Category:
         return total
 
     def average_sum(self):
+        """Подсчитывает средний ценник всех товаров"""
         avg = sum(Product.price for goods in self.__goods) / len(self.__goods)
         return avg
     try:
@@ -129,6 +130,7 @@ class LawnGrass(Product, MixinLog):
 
 
 class AddGoodsException(Exception):
+    """Класс для исключения товаров с кол-вом 0"""
     def __init__(self, *args, **kwargs):
         self.message = args[0] if args else 'Невозможно добавить 0 товаров'
 
