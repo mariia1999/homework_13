@@ -4,7 +4,7 @@ from main import Category, Product, Smartphone, LawnGrass
 
 @pytest.fixture
 def category_clothes():
-    return Category('одежда', 'для спорта', ["топ", "леггинсы"])
+    return Category('одежда', 'для спорта')
 
 
 def test_init(category_clothes):
@@ -41,6 +41,7 @@ def test_init_smartphone(iphone):
     assert Product.total_products == 1
 
 
+@pytest.fixture
 def test_init_grass(grass):
     """тест для инициализации класса трава"""
     assert grass.product_name == 'трава для газона'
@@ -58,6 +59,12 @@ def test__add__(p1, p2):
     assert p1 == Product('watermelon', 'summer', '100', 50, 'red')
     assert p2 == Product('apple', 'russian', 40, 200, 'green')
     assert p1 + p2 == (100 * 50) + (40 * 200)
+
+
+@pytest.fixture
+def test_average_sum(p1):
+    p1 = Category("Fruits", "season fruits")
+    assert Category.average_sum() == 0
 
 
 

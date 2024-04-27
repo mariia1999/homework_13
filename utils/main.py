@@ -35,12 +35,12 @@ class Category:
 
     def average_sum(self):
         """Подсчитывает средний ценник всех товаров"""
-        avg = sum(Product.price for goods in self.__goods) / len(self.__goods)
-        return avg
-    try:
-        len(self.__goods) == 0
-    except ZeroDivisionError:
-        print('В категории нет товаров')
+        try:
+            if not self.__goods:
+                print("В списке нет товаров")
+            avg = sum(Product.price for goods in self.__goods) / len(self.__goods)
+        except ZeroDivisionError:
+            return 0
 
 
     #def get_goods(self):
